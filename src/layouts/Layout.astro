@@ -1,0 +1,58 @@
+---
+import "@fontsource-variable/archivo";
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="description"
+			content="Scrape and preview specific snippets of text and image content that provide a summary for any webpage"
+		/>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://metatags.io/" />
+		<meta property="og:title" content="MetaScrape" />
+		<meta
+			property="og:description"
+			content="Scrape and preview specific snippets of text and image content that provide a summary for any webpage"
+		/>
+		<meta
+			property="og:image"
+			content="https://metatags.io/images/meta-tags.png"
+		/>
+		<link href="/prism.css" rel="stylesheet" />
+		<title>{title}</title>
+	</head>
+	<body>
+		<div
+			class="fixed inset-0 -z-10 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"
+		>
+		</div>
+		<slot />
+	</body>
+</html>
+<style is:global>
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
+	.code_block::-webkit-scrollbar {
+		height: 6px;
+	}
+	.code_block::-webkit-scrollbar-track {
+		background: transparent; /* color of the tracking area */
+	}
+	.code_block::-webkit-scrollbar-thumb {
+		background-color: transparent; /* color of the scroll thumb */
+		border-radius: 20px; /* roundness of the scroll thumb */
+		border: 3px solid rgba(255, 255, 255, 0.3); /* creates padding around scroll thumb */
+	}
+</style>

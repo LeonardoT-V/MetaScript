@@ -1,0 +1,14 @@
+---
+import Article from "./Article.astro";
+import CodeBlock from "./CodeBlock.astro";
+
+const { og } = Astro.props;
+let ogData = {};
+og.forEach((meta) => {
+  ogData[meta.property] = meta.content;
+});
+---
+
+<Article title="Open Graph" id="og" tag="meta" img={ogData["og:image"]}>
+  {Object.values(og).map((i) => <CodeBlock meta={i} />)}
+</Article>

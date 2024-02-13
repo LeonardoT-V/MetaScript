@@ -1,0 +1,17 @@
+---
+import { Prism } from "@astrojs/prism";
+
+const {
+  meta: { tag, type, ...el },
+} = Astro.props;
+let code = "";
+Object.entries(el).forEach((i) => (code = code + ` ${i[0]}="${i[1]}"`));
+---
+
+<div class="!px-0">
+  <Prism
+    lang="html"
+    code={`<${tag}${code} >`}
+    class="rounded !m-0 code_block"
+  />
+</div>

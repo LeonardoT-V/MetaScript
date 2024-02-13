@@ -1,0 +1,16 @@
+---
+const { name, label } = Astro.props;
+import ArrowLeft from "../icons/ArrowLeft.astro";
+---
+
+<li>
+  <a
+    class="opacity-50 hover:opacity-60 w-fit group text-xs capitalize inline-flex"
+    href={`#${name}`}
+  >
+    {label ?? name}
+    <span class="group-hover:opacity-100 opacity-0 ml-2"
+      ><ArrowLeft class="h-4 w-4" /></span
+    >
+  </a>
+</li>

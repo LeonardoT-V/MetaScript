@@ -1,0 +1,28 @@
+---
+const { data, icons } = Astro.props;
+---
+
+{
+  icons && (
+    <img
+      class="h-12 w-12 rounded"
+      width="48"
+      height="48"
+      src={icons[0]?.url}
+      alt={icons[0]?.rel}
+    />
+  )
+}
+
+{
+  data["theme-color"] && (
+    <div
+      class="h-6 w-6 rounded group relative border border-opacity-80"
+      style={{ backgroundColor: data["theme-color"]?.content }}
+    >
+      <p class="absolute -left-10 -bottom-7 w-24 bg-white px-2 py-1.5 z-10 text-center text-xs rounded shadow-xl opacity-0 group-hover:opacity-100 text-black/80 transition-opacity">
+        theme color
+      </p>
+    </div>
+  )
+}
