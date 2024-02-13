@@ -9,19 +9,17 @@ import OpenGraph from "./OpenGraph.astro";
 import SideHeader from "./SideHeader.astro";
 import TwitterSection from "./TwitterSection.astro";
 const { url } = Astro;
-
 const urlQuery = url.searchParams.get("url");
 const urlFetch = new URL(urlQuery);
-// let jsonFetch = {};
-// try {
-//   const fetch = await getInfoPages(urlQuery);
-//   jsonFetch = { ...fetch };
-// } catch (error) {
-//   console.log(error);
-//   return error;
-// }
-const resDF = await fetch(`${url.origin}/api/search/?url=${urlQuery}`);
-const { icons, og, twitter, title, description, ...data } = await resDF.json();
+let jsonFetch = {};
+try {
+  const fetch = await getInfoPages(urlQuery);
+  jsonFetch = { ...fetch };
+} catch (error) {
+  console.log(error);
+  return error;
+}
+const { icons, og, twitter, title, description, ...data } = jsonFetch as any;
 ---
 
 <Layout title="MetaScrapt Extract metadata">
@@ -126,9 +124,9 @@ const { icons, og, twitter, title, description, ...data } = await resDF.json();
       </section>
     </aside>
     <section class="flex-1 md:pr-4 py-4 lg:py-8 space-y-8 lg:max-w-prose">
-      <!-- {og && <OpenGraph og={og} />}
+      {og && <OpenGraph og={og} />}
       {icons && <IconsGalery icons={icons} />}
-      {twitter && <TwitterSection twitter={twitter} />} -->
+      {twitter && <TwitterSection twitter={twitter} />}
       {
         Object.getOwnPropertyNames(data).map((meta) => (
           <Article
@@ -139,6 +137,11 @@ const { icons, og, twitter, title, description, ...data } = await resDF.json();
             <Code meta={data[meta]} />
           </Article>
         ))
+      }
+      {
+        Object.getOwnPropertyNames(data).map(
+          (meta) => data[meta].name && <LinkNav name={data[meta].name} />,
+        )
       }
     </section>
   </main>
