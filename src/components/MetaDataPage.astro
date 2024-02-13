@@ -20,6 +20,7 @@ try {
 }
 
 const { icons, og, twitter, title, description, ...data } = jsonFetch as any;
+console.log(data);
 ---
 
 <Layout title="MetaScrapt Extract metadata">
@@ -124,9 +125,9 @@ const { icons, og, twitter, title, description, ...data } = jsonFetch as any;
       </section>
     </aside>
     <section class="flex-1 md:pr-4 py-4 lg:py-8 space-y-8 lg:max-w-prose">
-      {og && <OpenGraph og={og} />}
+      <!-- {og && <OpenGraph og={og} />}
       {icons && <IconsGalery icons={icons} />}
-      {twitter && <TwitterSection twitter={twitter} />}
+      {twitter && <TwitterSection twitter={twitter} />} -->
       {
         Object.getOwnPropertyNames(data).map((meta) => (
           <Article

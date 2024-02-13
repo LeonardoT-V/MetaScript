@@ -7,6 +7,7 @@ let ogData = {};
 og.forEach((meta) => {
   ogData[meta.property] = meta.content;
 });
+console.log(ogData);
 ---
 
 <Article title="Open Graph" id="og" tag="meta" img={ogData["og:image"]}>
