@@ -9,18 +9,19 @@ import OpenGraph from "./OpenGraph.astro";
 import SideHeader from "./SideHeader.astro";
 import TwitterSection from "./TwitterSection.astro";
 const { url } = Astro;
+
 const urlQuery = url.searchParams.get("url");
 const urlFetch = new URL(urlQuery);
-let jsonFetch = {};
-try {
-  const fetch = await getInfoPages(urlQuery);
-  jsonFetch = { ...fetch };
-} catch (error) {
-  console.log(error);
-}
-
-const { icons, og, twitter, title, description, ...data } = jsonFetch as any;
-console.log(data);
+// let jsonFetch = {};
+// try {
+//   const fetch = await getInfoPages(urlQuery);
+//   jsonFetch = { ...fetch };
+// } catch (error) {
+//   console.log(error);
+//   return error;
+// }
+const resDF = await fetch(`${url.origin}/api/search/?url=${urlQuery}`);
+const { icons, og, twitter, title, description, ...data } = await resDF.json();
 ---
 
 <Layout title="MetaScrapt Extract metadata">
