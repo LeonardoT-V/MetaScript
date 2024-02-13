@@ -12,12 +12,8 @@ const { url } = Astro;
 const urlQuery = url.searchParams.get("url");
 const urlFetch = new URL(urlQuery);
 let jsonFetch = {};
-try {
-  const data = await getInfoPages(urlQuery);
-  jsonFetch = { ...data };
-} catch (error) {
-  Astro.redirect("/");
-}
+const fetch = await getInfoPages(urlQuery);
+jsonFetch = { ...fetch };
 
 const { icons, og, twitter, title, description, ...data } = jsonFetch as any;
 ---
