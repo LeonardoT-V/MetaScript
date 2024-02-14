@@ -1,5 +1,8 @@
 
 export default function AR({title, tag, id, img, ...props}) {
+  if(!title) {
+    return
+  }
   return (
     <article class="w-full space-y-2" id={`${id}`}>
     <header class="relative group">
