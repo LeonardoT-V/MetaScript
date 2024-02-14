@@ -5,13 +5,15 @@ import { getInfoPages } from "../utils/fetchData";
 import Article from "./Article.astro";
 import IconsGalery from "./IconsGalery.astro";
 import LinkNav from "./LinkNav.astro";
-import OpenGraph from "./OpenGraph.astro";
+import OpenGraph from "./OpenGraph";
+import AR from "./AR";
 import SideHeader from "./SideHeader.astro";
 import TwitterSection from "./TwitterSection.astro";
 const { url } = Astro;
 const urlQuery = url.searchParams.get("url");
 const urlFetch = new URL(urlQuery);
 let jsonFetch = {};
+
 try {
   const fetch = await getInfoPages(urlQuery);
   jsonFetch = { ...fetch };
@@ -124,7 +126,6 @@ const { icons, og, twitter, title, description, ...data } = jsonFetch as any;
       </section>
     </aside>
     <section class="flex-1 md:pr-4 py-4 lg:py-8 space-y-8 lg:max-w-prose">
-      {og && <OpenGraph og={og} />}
       {icons && <IconsGalery icons={icons} />}
       {twitter && <TwitterSection twitter={twitter} />}
       {
@@ -138,11 +139,7 @@ const { icons, og, twitter, title, description, ...data } = jsonFetch as any;
           </Article>
         ))
       }
-      {
-        Object.getOwnPropertyNames(data).map(
-          (meta) => data[meta].name && <LinkNav name={data[meta].name} />,
-        )
-      }
+      <OpenGraph og={og} client:visible />
     </section>
   </main>
 </Layout>
