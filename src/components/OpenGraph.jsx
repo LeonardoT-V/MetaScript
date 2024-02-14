@@ -9,7 +9,7 @@ export default function OpenGraph({ og }) {
 
   return (
     <AR slot='nmame' title="Open Graph" id="og" tag="meta" img={ogData["og:image"]}>
-      {Object.values(og).map((i) => <Code  meta={i} />)}
+      {Object.values(og).map((i) => <Code meta={i} />)}
     </AR>
   )
 }
