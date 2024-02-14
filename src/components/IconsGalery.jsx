@@ -1,13 +1,10 @@
----
-import Article from "./Article.astro";
+import Article from "./AR";
 
-const { icons } = Astro.props;
----
-
-<Article id="icons" title="Galery icons" tag="link">
+export default function IconsGalery({ icons }) {
+  return <Article id="icons" title="Galery icons" tag="link">
   <section class="flex flex-col md:flex-row gap-8 flex-wrap">
     {
-      icons.map((icon: any) => (
+      icons.map((icon) => (
         <div class="flex flex-col gap-1 items-center">
           <img
             class="rounded max-h-32"
@@ -22,3 +19,7 @@ const { icons } = Astro.props;
     }
   </section>
 </Article>
+
+}
+
+

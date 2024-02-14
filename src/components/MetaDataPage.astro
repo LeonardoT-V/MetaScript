@@ -1,12 +1,9 @@
 ---
-import Code from "./CodeBlock.astro";
 import Layout from "../layouts/Layout.astro";
 import { getInfoPages } from "../utils/fetchData";
-import Article from "./Article.astro";
-import IconsGalery from "./IconsGalery.astro";
+import IconsGalery from "./IconsGalery";
 import LinkNav from "./LinkNav.astro";
 import OpenGraph from "./OpenGraph";
-import AR from "./AR";
 import SideHeader from "./SideHeader.astro";
 import TwitterSection from "./TwitterSection.astro";
 const { url } = Astro;
@@ -126,7 +123,7 @@ const { icons, og, twitter, title, description, ...data } = jsonFetch as any;
       </section>
     </aside>
     <section class="flex-1 md:pr-4 py-4 lg:py-8 space-y-8 lg:max-w-prose">
-      <OpenGraph og={og} client:load />
+      {og && <OpenGraph og={og} client:load />}
       {icons && <IconsGalery icons={icons} />}
       {twitter && <TwitterSection twitter={twitter} />}
       <!-- {
@@ -143,3 +140,4 @@ const { icons, og, twitter, title, description, ...data } = jsonFetch as any;
     </section>
   </main>
 </Layout>
+./IconsGalery.jsx
