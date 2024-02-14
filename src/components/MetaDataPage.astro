@@ -130,7 +130,7 @@ const { icons, og, twitter, title, description, ...data } = jsonFetch as any;
       {og && <OpenGraph og={og} client:load />}
       {icons && <IconsGalery icons={icons} client:visible />}
       {twitter && <TwitterSection twitter={twitter} />}
-      {
+      <!-- {
         Object.getOwnPropertyNames(data).map((meta) => (
           <AR
             client:visible
@@ -141,7 +141,7 @@ const { icons, og, twitter, title, description, ...data } = jsonFetch as any;
             <CodeBlock meta={data[meta]} />
           </AR>
         ))
-      }
+      } -->
     </section>
   </main>
 </Layout>
