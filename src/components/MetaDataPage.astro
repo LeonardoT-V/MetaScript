@@ -6,14 +6,21 @@ import IconsGalery from "./IconsGalery";
 import LinkNav from "./LinkNav.astro";
 import OpenGraph from "./OpenGraph";
 import SideHeader from "./SideHeader.astro";
-import TwitterSection from "./TwitterSection.astro";
+import TwitterSection from "./TwitterSection";
+import RestData from "./RestData";
 const { url } = Astro;
 const urlQuery = url.searchParams.get("url");
 const urlFetch = new URL(urlQuery);
+let jsonFetch = {};
 
-const fetch = await getInfoPages(urlQuery);
-
-const { icons, og, twitter, title, description, ...data } = fetch as any;
+try {
+  const fetch = await getInfoPages(urlQuery);
+  jsonFetch = { ...fetch };
+} catch (error) {
+  console.log(error);
+  return error;
+}
+const { icons, og, twitter, title, description, ...data } = jsonFetch as any;
 ---
 
 <Layout title="MetaScrapt Extract metadata">
@@ -117,22 +124,13 @@ const { icons, og, twitter, title, description, ...data } = fetch as any;
         </nav>
       </section>
     </aside>
-    <section class="flex-1 md:pr-4 py-4 lg:py-8 space-y-8 lg:max-w-prose">
+    <section
+      class="flex-1 md:pr-4 py-4 lg:py-8 flex flex-col gap-y-8 lg:max-w-prose"
+    >
       {og && <OpenGraph og={og} client:load />}
       {icons && <IconsGalery icons={icons} client:visible />}
-      {twitter && <TwitterSection twitter={twitter} />}
-      <!-- {
-        Object.getOwnPropertyNames(data).map((meta) => (
-          <AR
-            client:visible
-            id={data[meta].name}
-            title={data[meta]?.name?.replaceAll("-", " ")}
-            tag={data[meta].tag}
-          >
-            <CodeBlock meta={data[meta]} />
-          </AR>
-        ))
-      } -->
+      {twitter && <TwitterSection twitter={twitter} client:visible />}
+      <RestData data={data} client:visible />
     </section>
   </main>
 </Layout>
