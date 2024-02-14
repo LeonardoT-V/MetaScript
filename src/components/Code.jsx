@@ -1,4 +1,4 @@
-import { CodeBlock, ocean } from 'react-code-blocks';
+import { CodeBlock, monokaiSublime } from 'react-code-blocks';
 
 export default function Code({
   meta: { tag, type, ...el },
@@ -6,7 +6,7 @@ export default function Code({
   let code = "";
   Object.entries(el).forEach((i) => (code = code + ` ${i[0]}="${i[1]}"`));
   return (
-    <CodeBlock text={`<${tag}${code} >`} language='html' theme={ocean} showLineNumbers={false} className='code_block'
+    <CodeBlock text={`<${tag}${code} >`} language='html' theme={monokaiSublime} showLineNumbers={false} className='code_block'
     />
   )
 }
