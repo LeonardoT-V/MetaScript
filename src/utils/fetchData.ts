@@ -17,7 +17,7 @@ export const getInfoPages = async (url: string) => {
           return child
         }
       }
-    }).filter((child) => child?.type !== undefined)
+    }).filter((child: any) => child?.type !== undefined)
 
     const metaJson = formatToJson(metaData, { url })
     return metaJson
