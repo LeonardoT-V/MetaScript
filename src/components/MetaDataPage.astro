@@ -126,6 +126,7 @@ const { icons, og, twitter, title, description, ...data } = jsonFetch as any;
       </section>
     </aside>
     <section class="flex-1 md:pr-4 py-4 lg:py-8 space-y-8 lg:max-w-prose">
+      <OpenGraph og={og} client:load />
       {icons && <IconsGalery icons={icons} />}
       {twitter && <TwitterSection twitter={twitter} />}
       <!-- {
@@ -139,7 +140,6 @@ const { icons, og, twitter, title, description, ...data } = jsonFetch as any;
           </Article>
         ))
       } -->
-      <OpenGraph og={og} />
     </section>
   </main>
 </Layout>
