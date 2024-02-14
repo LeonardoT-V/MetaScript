@@ -128,7 +128,7 @@ const { icons, og, twitter, title, description, ...data } = jsonFetch as any;
     <section class="flex-1 md:pr-4 py-4 lg:py-8 space-y-8 lg:max-w-prose">
       {icons && <IconsGalery icons={icons} />}
       {twitter && <TwitterSection twitter={twitter} />}
-      {
+      <!-- {
         Object.getOwnPropertyNames(data).map((meta) => (
           <Article
             id={data[meta].name}
@@ -138,8 +138,8 @@ const { icons, og, twitter, title, description, ...data } = jsonFetch as any;
             <Code meta={data[meta]} />
           </Article>
         ))
-      }
-      <OpenGraph og={og} client:visible />
+      } -->
+      <OpenGraph og={og} />
     </section>
   </main>
 </Layout>
